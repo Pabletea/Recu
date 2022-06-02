@@ -22,7 +22,7 @@ class PersonasFun {
         }
 
 
-        private fun esIrlandes(persona: Persona?) : Boolean {
+        fun esIrlandes(persona: Persona?) : Boolean {
             if (persona == null)
                 throw PersonaNulaException()
             if (persona.location.country == "Ireland" && persona.nat != "IE" || persona.location.country != "Ireland" && persona.nat == "IE")

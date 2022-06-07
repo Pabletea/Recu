@@ -19,9 +19,51 @@ public class RecuTest {
     //  Asegurate que el 100% de pasar el test sobre el 100% de las personas disponibles.
     //  esIrlandes deberá devolver "true" si es irlandés. En caso contrario, "false"
     @Test
-    public void testEsIrlandes_XXX() {
+    public void testEsIrlandes_001() {
         // TODO 2p
+        Persona p = examen.gestorDePersonas.getPersonas()[0];
+        p.getLocation().setCountry("Ireland");
+        Assertions.assertTrue(PersonasFun.Companion.esIrlandes(p));
 
     }
+
+    @Test
+    public void TestEsIrlandes_002(){
+    Persona p = null;
+    Assertions.assertThrows(PersonaNulaException.class, ()-> PersonasFun.Companion.esIrlandes(p));
+    }
+
+    @Test
+    public void TestEsIrlandes_003(){
+    Persona p = examen.gestorDePersonas.getPersonas()[0];
+    p.getLocation().setCountry("Spain");
+    p.setNat("IE");
+    Assertions.assertThrows(ErrorEnNacionalidadException.class, ()-> PersonasFun.Companion.esIrlandes(p));
+    }
+
+    @Test
+    public void TestEsIrlandes_004(){
+        Persona p = examen.gestorDePersonas.getPersonas()[0];
+        p.getLocation().setCountry("Ireland");
+        p.setNat("DK");
+        Assertions.assertThrows(ErrorEnNacionalidadException.class, ()-> PersonasFun.Companion.esIrlandes(p));
+    }
+
+    @Test
+    public void TestEsIrlandes_005(){
+        Persona p = examen.gestorDePersonas.getPersonas()[1];
+        Assertions.assertTrue(PersonasFun.Companion.esIrlandes(p));
+    }
+
+    @Test
+    public void TestEsIrlandes_006(){
+        Persona p = examen.gestorDePersonas.getPersonas()[2];
+        Assertions.assertFalse(PersonasFun.Companion.esIrlandes(p));
+    }
+
+
+
+
+
 
 }
